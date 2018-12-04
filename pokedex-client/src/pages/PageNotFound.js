@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-//import '../css/Home.css';
+import Center from '../components/Center';
 
 class PageNotFound extends Component {
   render() {
     return (
-      <h1>Page Not Found !</h1>
+      <Center>
+        <h1>Page Not Found !</h1>
+      </Center>
     );
   }
 }
