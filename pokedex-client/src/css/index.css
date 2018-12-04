@@ -7,36 +7,38 @@ html, body {
     color: #222;
 }
 
+strong { font-weight: 600!important; }
+
 .flex { display: flex; }
-
 .flex-column { flex-direction: column; }
-
+.flex-grow { flex-grow: 1; }
 .justify-content-center { justify-content: center; }
-
+.justify-content-between { justify-content: space-between; }
 .align-items-center { align-items: center; }
 
-.flex-grow { flex-grow: 1; }
-
-.mt-2 { margin-top: 1.6em!important; }
+.w50 { width: 50%; }
 
 .pl-1 { padding-left: 1.15em; }
-
 .py-row {
     padding-top: 16px;
     padding-bottom: 16px;
 }
 
-.mr-2 { margin-right: 2em; }
+.mt-2 { margin-top: 1.6em!important; }
+.mt-3 { margin-top: 2.6em!important; }
+.mb-3 { margin-bottom: 2.6em!important; }
+.mr-1 { margin-right: 0.8em!important; }
+.mr-2 { margin-right: 2em!important; }
+.mb-0 { margin-bottom: 0!important; }
+.m-0 { margin: 0 }
 
-.mb-0 { margin-bottom: 0; }
-
-.w50 { width: 50%; }
-
+.card { border-radius: 7px; }
 .title {
     padding-bottom: 12px;
-    border-bottom: 1px solid rgb(207, 207, 207);
+    border-bottom: 1px solid #EAEAEA;
     margin: 22px 12px;
 }
+.capitalize { text-transform: capitalize; }
 
 .striped > div { border-bottom: 1px solid #EAEAEA }
 .striped > div:last-child { border-bottom: none; }
@@ -44,26 +46,10 @@ html, body {
 .table-text-larger tr td { font-size: 1.2rem; }
 
 .bounceEffect { animation: bounce 0.35s ease infinite alternate; }
-
 @keyframes bounce{
     from {transform: translateY(0);}
     to   {transform: translateY(-10px);}
 }
 
 .scaleEffect { transition: all 350ms ease; }
-
 .scaleEffect:hover { transform: scale(1.05); }
-
-strong { font-weight: 600!important; }
-
-.capitalize { text-transform: capitalize; }
-
-.fixed-top-left {
-    position: fixed;
-    top: 32px;
-    left: 32px;
-    z-index: 9999;
-}
-
-.card { border-radius: 7px;
-}

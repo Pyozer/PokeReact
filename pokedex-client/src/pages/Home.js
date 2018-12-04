@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import SearchBar from '../components/SearchBar'
 import PokemonList from '../components/PokemonList';
+import PageTitle from '../Context';
+import logoPokedex from '../assets/Pokedex_logo.png';
+import '../css/Home.css';
 
 class Home extends Component {
     constructor(props) {
@@ -54,14 +58,19 @@ class Home extends Component {
 
     render() {
         return (
-            <>
+            <PageTitle title="Home">
+                <header className="App-header">
+                    <Link to="/" title="Home">
+                        <img src={logoPokedex} className="App-logo" alt="logo" />
+                    </Link>
+                </header>
                 <div className="row">
                     <div className="col s12 m8 l6 offset-m2 offset-l3">
                         <SearchBar onSearch={this.onSearch} />
                     </div>
                 </div>
                 {this.renderBody()}
-            </>
+            </PageTitle>
         )
     }
 }

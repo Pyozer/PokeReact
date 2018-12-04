@@ -1,19 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import logoPokedex from './assets/Pokedex_logo.png';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from './pages/Home'
 import Pokemon from './pages/Pokemon'
 import PageNotFound from './pages/PageNotFound'
-import './css/App.css';
 
 const App = () => (
   <Router>
-    <div className="container">
-      <header className="App-header">
-        <Link to="/" title="Home">
-          <img src={logoPokedex} className="App-logo" alt="logo" />
-        </Link>
-      </header>
+    <div className="container mt-3 mb-3">
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/:pokemonId" exact component={Pokemon} />
