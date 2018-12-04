@@ -6,7 +6,7 @@ import PageNotFound from './pages/PageNotFound'
 
 const App = () => (
   <Router>
-    <div className="container mt-3 mb-3">
+    <div className="container pt-3 pb-4 mh100">
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/:pokemonId" exact component={Pokemon} />
