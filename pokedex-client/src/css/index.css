@@ -7,38 +7,30 @@ html, body {
     color: #222;
 }
 
-.flex {
-    display: flex;
+.flex { display: flex; }
+
+.flex-column { flex-direction: column; }
+
+.justify-content-center { justify-content: center; }
+
+.align-items-center { align-items: center; }
+
+.flex-grow { flex-grow: 1; }
+
+.mt-2 { margin-top: 1.6em!important; }
+
+.pl-1 { padding-left: 1.15em; }
+
+.py-row {
+    padding-top: 16px;
+    padding-bottom: 16px;
 }
 
-.flex-column {
-    flex-direction: column;
-}
+.mr-2 { margin-right: 2em; }
 
-.justify-content-center {
-    justify-content: center;
-}
+.mb-0 { margin-bottom: 0; }
 
-.align-items-center {
-    align-items: center;
-}
-
-.flex-grow {
-    flex-grow: 1;
-}
-
-.mt-2 {
-    margin-top: 1.6em!important;
-}
-
-
-.pl-1 {
-    padding-left: 1.15em;
-}
-
-.mr-2 {
-    margin-right: 2em;
-}
+.w50 { width: 50%; }
 
 .title {
     padding-bottom: 12px;
@@ -46,38 +38,32 @@ html, body {
     margin: 22px 12px;
 }
 
-table tr:last-child {
-    border: none;
-}
+.striped > div { border-bottom: 1px solid #EAEAEA }
+.striped > div:last-child { border-bottom: none; }
 
-.table-text-larger tr td {
-    font-size: 1.2rem;
-}
+.table-text-larger tr td { font-size: 1.2rem; }
 
-.bounceEffect {
-    animation: bounce 0.35s ease infinite alternate;
-}
+.bounceEffect { animation: bounce 0.35s ease infinite alternate; }
 
 @keyframes bounce{
     from {transform: translateY(0);}
     to   {transform: translateY(-10px);}
 }
 
-.w50 {
-    width: 50%;
-}
+.scaleEffect { transition: all 350ms ease; }
 
-strong {
-    font-weight: 600!important;
-}
+.scaleEffect:hover { transform: scale(1.05); }
 
-.capitalize {
-    text-transform: capitalize;
-}
+strong { font-weight: 600!important; }
+
+.capitalize { text-transform: capitalize; }
 
 .fixed-top-left {
     position: fixed;
     top: 32px;
     left: 32px;
     z-index: 9999;
+}
+
+.card { border-radius: 7px;
 }
