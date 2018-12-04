@@ -47,13 +47,11 @@ class Home extends Component {
         })
     }
 
-    renderBody = () => {
-        if (!this.state.dataLoaded) return
-        if (this.state.error)
-            return <h3>Error: {this.state.error}</h3>
-        if (this.state.pokemons.length === 0)
-            return <h3>No pokemon :/</h3>
-        return <PokemonList pokemons={this.getFilteredPokemons(this.state.search)} />
+    renderBody = ({dataLoaded, error, pokemons, search}) => {
+        if (!dataLoaded) return <></>
+        if (error) return <h3>Error: {error}</h3>
+        if (pokemons.length === 0) return <h3>No pokemon :/</h3>
+        return <PokemonList pokemons={this.getFilteredPokemons(search)} />
     }
 
     render() {
@@ -64,12 +62,14 @@ class Home extends Component {
                         <img src={logoPokedex} className="App-logo" alt="logo" />
                     </Link>
                 </header>
-                <div className="row">
-                    <div className="col s12 m8 l6 offset-m2 offset-l3">
-                        <SearchBar onSearch={this.onSearch} />
+                <main>
+                    <div className="row">
+                        <div className="col s12 m8 l6 offset-m2 offset-l3">
+                            <SearchBar onSearch={this.onSearch} />
+                        </div>
                     </div>
-                </div>
-                {this.renderBody()}
+                    {this.renderBody(this.state)}
+                </main>
             </PageTitle>
         )
     }
