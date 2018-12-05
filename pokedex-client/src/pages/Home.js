@@ -5,7 +5,7 @@ import PokemonList from '../components/PokemonList';
 import PageTitle from '../Context';
 import logoPokedex from '../assets/Pokedex_logo.png';
 import '../css/Home.css';
-import Message from '../components/Message';
+import MessageButton from '../components/MessageAction';
 
 class Home extends Component {
     defaultState = { dataLoaded: false, pokemons: [], error: null, search: "" }
@@ -49,32 +49,25 @@ class Home extends Component {
         })
     }
 
-    renderErrorMsg = (error) => (
+    renderErrorMsg = (error, action) => (
         <div className="row">
             <div className="col s12 m8 l6 offset-m2 offset-l3">
-                <Message>
-                    <div className="flex">
-                        <div className="flex-grow">
-                            Error: {error}
-                        </div>
-                        <div className="scaleEffect pointer white-text" href="#" onClick={this.fetchAllPokemon}>
-                            <strong>Réessayer</strong>
-                        </div>
-                    </div>
-                </Message>
+                <MessageButton message={error} onAction={action} />
             </div>
         </div>
     )
 
-    renderBody = ({ dataLoaded, error, pokemons, search }) => {
+    renderBody = ({ dataLoaded, error, search }) => {
         if (!dataLoaded)
             return <></>
         if (error)
-            return this.renderErrorMsg(error)
-        if (pokemons.length === 0)
-            return <h3>No pokemon :/</h3>
+            return this.renderErrorMsg(`Error: ${error}`, this.fetchAllPokemon)
 
-        return <PokemonList pokemons={this.getFilteredPokemons(search)} />
+        const pokemonsFiltered = this.getFilteredPokemons(search)
+        if (pokemonsFiltered.length === 0)
+            return this.renderErrorMsg('No pokemon :/')
+
+        return <PokemonList pokemons={pokemonsFiltered} />
     }
 
     render() {
