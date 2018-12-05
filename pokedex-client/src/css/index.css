@@ -60,3 +60,7 @@ strong { font-weight: 600!important; }
 
 .scaleEffect { transition: all 350ms ease; }
 .scaleEffect:hover { transform: scale(1.05); }
+
+.pointer {
+    cursor: pointer;
+}

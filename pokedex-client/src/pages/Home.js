@@ -5,11 +5,14 @@ import PokemonList from '../components/PokemonList';
 import PageTitle from '../Context';
 import logoPokedex from '../assets/Pokedex_logo.png';
 import '../css/Home.css';
+import Message from '../components/Message';
 
 class Home extends Component {
+    defaultState = { dataLoaded: false, pokemons: [], error: null, search: "" }
+
     constructor(props) {
         super(props)
-        this.state = { dataLoaded: false, pokemons: [], error: null, search: "" }
+        this.state = this.defaultState
     }
 
     componentDidMount() {
@@ -17,23 +20,22 @@ class Home extends Component {
     }
 
     fetchAllPokemon = () => {
+        this.setState({ dataLoaded: false, pokemons: [], error: null, search: "" })
+
         fetch('http://localhost:3001/pokemons')
             .then(res => res.json())
             .then(res => {
-                if (res.data)
-                    res.data = res.data.sort((a, b) => {
-                        if (a.ndex > b.ndex) return 1
-                        if (a.ndex < b.ndex) return -1
-                        return 0
-                    })
-                this.setState({ dataLoaded: true, error: res.message, pokemons: res.data || [] })
-            });
+                res.data = (res.data || []).sort(({ndexA}, {ndexB}) => {
+                    if (ndexA > ndexB) return 1
+                    if (ndexA < ndexB) return -1
+                    return 0
+                })
+                this.setState({ dataLoaded: true, error: res.message, pokemons: res.data })
+            }).catch(err => this.setState({ dataLoaded: true, error: err.message }))
     }
 
     onSearch = (search) => {
-        this.setState({
-            search: search
-        })
+        this.setState({ search: search })
     }
 
     getFilteredPokemons = (search) => {
@@ -47,10 +49,31 @@ class Home extends Component {
         })
     }
 
-    renderBody = ({dataLoaded, error, pokemons, search}) => {
-        if (!dataLoaded) return <></>
-        if (error) return <h3>Error: {error}</h3>
-        if (pokemons.length === 0) return <h3>No pokemon :/</h3>
+    renderErrorMsg = (error) => (
+        <div className="row">
+            <div className="col s12 m8 l6 offset-m2 offset-l3">
+                <Message>
+                    <div className="flex">
+                        <div className="flex-grow">
+                            Error: {error}
+                        </div>
+                        <div className="scaleEffect pointer white-text" href="#" onClick={this.fetchAllPokemon}>
+                            <strong>Réessayer</strong>
+                        </div>
+                    </div>
+                </Message>
+            </div>
+        </div>
+    )
+
+    renderBody = ({ dataLoaded, error, pokemons, search }) => {
+        if (!dataLoaded)
+            return <></>
+        if (error)
+            return this.renderErrorMsg(error)
+        if (pokemons.length === 0)
+            return <h3>No pokemon :/</h3>
+
         return <PokemonList pokemons={this.getFilteredPokemons(search)} />
     }
 

@@ -4,7 +4,7 @@ import '../css/PokemonCard.css';
 import PokemonImage from './PokemonImage';
 
 const PokemonCard = ({ pokemon }) => (
-    <Link to={"/" + pokemon.ndex} title={pokemon.nom}>
+    <Link to={`/${pokemon.ndex}`} title={pokemon.nom}>
         <div className="Pokemon-Card card scaleEffect">
             <div className="card-image">
                 <PokemonImage ndex={pokemon.ndex} />

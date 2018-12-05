@@ -33,9 +33,9 @@ class Pokemon extends Component {
     }
 
     render() {
-        const pokemon = this.state.pokemon
+        const { pokemon } = this.state
         const pokemonId = this.props.match.params.pokemonId
-        const pokemonName = this.state.pokemon ? this.state.pokemon.nom : ''
+        const pokemonName = pokemon ? pokemon.nom : ''
 
         return (
             <PageTitle title={`#${pokemonId} ${pokemonName}`}>
