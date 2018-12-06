@@ -26,9 +26,9 @@ class Home extends Component {
         fetch('http://localhost:3001/pokemons')
             .then(res => res.json())
             .then(res => {
-                res.data = (res.data || []).sort(({ ndexA }, { ndexB }) => {
-                    if (ndexA > ndexB) return 1
-                    if (ndexA < ndexB) return -1
+                res.data = (res.data || []).sort((a, b) => {
+                    if (a.ndex > b.ndex) return 1
+                    if (a.ndex < b.ndex) return -1
                     return 0
                 })
                 this.setState({ dataLoaded: true, error: res.message, pokemons: res.data })
