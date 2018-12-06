@@ -15,7 +15,7 @@ There is two route on the server:
 
 If request is a success :
 
-```json
+```
 {
     "status": "success",
     "code": 200,
@@ -25,7 +25,7 @@ If request is a success :
 
 If request failure :
 
-```json
+```
 {
     "status": "error",
     "code": 400 | 500,
