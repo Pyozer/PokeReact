@@ -11,6 +11,28 @@ There is two route on the server:
 | GET    | /pokemons            | Get all pokemons, with their informations                |
 | GET    | /pokemons/:pokemonId | Get all informations of a specific pokemon (by his ndex) |
 
+## Structure of JSON response
+
+If request is a success :
+
+```json
+{
+    'status': 'success',
+    'code': 200,
+    'data': Object | Array
+}
+```
+
+If request failure :
+
+```json
+{
+    'status': 'error',
+    'code': 400 | 500,
+    'message': 'An error message'
+}
+```
+
 ## Usage
 
 To launch the app, start first the Node server :
