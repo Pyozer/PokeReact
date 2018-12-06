@@ -5,11 +5,26 @@ This app is a PokeDex, the website build with React, display pokemons informatio
 
 There is two route on the server:
 
-- GET /                     : Display just a message "Welcome on PokeReact API"
-- GET /pokemons             : Route to get all pokemons
-- GET /pokemons/:pokemonId  : Route to get only one pokemon
+| Method | Route                | Description                                              |
+|--------|----------------------|----------------------------------------------------------|
+| GET    | /                    | Simple route that just display "Welcome to pokedex API"  |
+| GET    | /pokemons            | Get all pokemons, with their informations                |
+| GET    | /pokemons/:pokemonId | Get all informations of a specific pokemon (by his ndex) |
 
-Some screenshot :
+## Usage
+
+To launch the app, start first the Node server :
+`cd pokedex-server && yarn start`
+
+And then launch the react app :
+`cd pokedex-client && yarn start`
+
+You can build the react app for production with this command:
+`yarn build`
+
+**Info:** You can use `npm` instead of `yarn` if you want
+
+## Screenshots
 
 ### Home page
 
