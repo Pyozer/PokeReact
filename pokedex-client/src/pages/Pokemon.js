@@ -4,6 +4,7 @@ import PokemonInfo from '../components/PokemonInfos'
 import PokemonHeader from '../components/PokemonHeader'
 import BackIcon from '../components/BackIcon'
 import PageTitle from '../Context';
+import MessageAction from '../components/MessageAction';
 
 class Pokemon extends Component {
     constructor(props) {
@@ -12,22 +13,32 @@ class Pokemon extends Component {
     }
 
     componentDidMount() {
-        this.fetchPokemon(this.props.match.params.pokemonId)
+        this.fetchPokemon()
     }
 
-    fetchPokemon = (pokemonId) => {
-        fetch(`http://localhost:3001/pokemons/${pokemonId}`)
+    fetchPokemon = () => {
+        fetch(`http://localhost:3001/pokemons/${this.props.match.params.pokemonId}`)
             .then(res => res.json())
             .then(res => {
                 this.setState({ dataLoaded: true, error: res.message, pokemon: res.data })
             });
     }
 
-    renderBody = ({ dataLoaded, error, pokemon }) => {
-        if (!dataLoaded) return
-        if (error) return <h3>Error: {error}</h3>
+    renderErrorMsg = (error, action) => (
+        <div className="row mt-4">
+            <div className="col s12 m8 l6 offset-m2 offset-l3">
+                <MessageAction message={error} onAction={action} />
+            </div>
+        </div>
+    )
 
-        if (!pokemon) return <h3>No pokemon :/</h3>
+    renderBody = ({ dataLoaded, error, pokemon }) => {
+        if (!dataLoaded)
+            return <></>
+        if (error)
+            return this.renderErrorMsg(`Error: ${error}`, this.fetchPokemon)
+
+        if (!pokemon) this.renderErrorMsg('No pokemon :/')
 
         return <PokemonInfo pokemon={pokemon} />
     }
@@ -35,7 +46,7 @@ class Pokemon extends Component {
     render() {
         const { pokemon } = this.state
         const pokemonId = this.props.match.params.pokemonId
-        const pokemonName = pokemon ? pokemon.nom : ''
+        const pokemonName = pokemon && pokemon.nom ? pokemon.nom : ''
 
         return (
             <PageTitle title={`#${pokemonId} ${pokemonName}`}>
@@ -43,12 +54,8 @@ class Pokemon extends Component {
                     <div>
                         <BackIcon href="/" title="Back to home" />
                     </div>
-                    {pokemon ? (
-                        <>
-                            <PokemonHeader ndex={pokemon.ndex} nom={pokemon.nom} className="col s8" />
-                            <div></div>
-                        </>
-                    ) : <></>}
+                    <PokemonHeader ndex={pokemonId} nom={pokemonName} className="col s8" />
+                    <div style={{width: 42}}></div> { /* Empty div to correctly center align header (justify-content-between) */}
                 </div>
                 {this.renderBody(this.state)}
             </PageTitle>

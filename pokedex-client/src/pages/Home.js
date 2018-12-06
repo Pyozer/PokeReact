@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import SearchBar from '../components/SearchBar'
 import PokemonList from '../components/PokemonList';
+import MessageAction from '../components/MessageAction';
 import PageTitle from '../Context';
 import logoPokedex from '../assets/Pokedex_logo.png';
+import searchIcon from '../assets/search_icon.svg';
 import '../css/Home.css';
-import MessageButton from '../components/MessageAction';
 
 class Home extends Component {
     defaultState = { dataLoaded: false, pokemons: [], error: null, search: "" }
@@ -25,7 +26,7 @@ class Home extends Component {
         fetch('http://localhost:3001/pokemons')
             .then(res => res.json())
             .then(res => {
-                res.data = (res.data || []).sort(({ndexA}, {ndexB}) => {
+                res.data = (res.data || []).sort(({ ndexA }, { ndexB }) => {
                     if (ndexA > ndexB) return 1
                     if (ndexA < ndexB) return -1
                     return 0
@@ -52,7 +53,7 @@ class Home extends Component {
     renderErrorMsg = (error, action) => (
         <div className="row">
             <div className="col s12 m8 l6 offset-m2 offset-l3">
-                <MessageButton message={error} onAction={action} />
+                <MessageAction message={error} onAction={action} />
             </div>
         </div>
     )
@@ -64,9 +65,11 @@ class Home extends Component {
             return this.renderErrorMsg(`Error: ${error}`, this.fetchAllPokemon)
 
         const pokemonsFiltered = this.getFilteredPokemons(search)
-        if (pokemonsFiltered.length === 0)
-            return this.renderErrorMsg('No pokemon :/')
-
+        if (pokemonsFiltered.length === 0) {
+            if (search.length > 0)
+                return this.renderErrorMsg(<span>No search result with <strong>{search}</strong></span>)
+            return this.renderErrorMsg(<span>There isn't any pokemon in database</span>)
+        }
         return <PokemonList pokemons={pokemonsFiltered} />
     }
 
@@ -86,6 +89,11 @@ class Home extends Component {
                     </div>
                     {this.renderBody(this.state)}
                 </main>
+                <div className="fixed-bottom-right">
+                    <Link to="/search" className="btn-floating btn-large waves-effect waves-light red flex align-items-center justify-content-center">
+                        <img src={searchIcon} width="30" />
+                    </Link>
+                </div>
             </PageTitle>
         )
     }
