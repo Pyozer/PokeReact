@@ -34,6 +34,7 @@ strong { font-weight: 600!important; }
 .pt-3 { padding-top: 2.6em!important; }
 .pb-4 { padding-bottom: 3.6em!important; }
 .pl-1 { padding-left: 1.15em; }
+.pr-1 { padding-right: 1.15em; }
 .py-row {
     padding-top: 16px;
     padding-bottom: 16px;
@@ -43,8 +44,12 @@ strong { font-weight: 600!important; }
 .mt-4 { margin-top: 3.6em!important; }
 .mr-1 { margin-right: 0.8em!important; }
 .mr-2 { margin-right: 2em!important; }
+.ml-2 { margin-left: 2em!important; }
 .mb-0 { margin-bottom: 0!important; }
 .m-0 { margin: 0 }
+
+.d-block { display: block!important; }
+.d-none { display: none!important; }
 
 .circled {
     border-radius: 50px;
@@ -74,4 +79,35 @@ strong { font-weight: 600!important; }
 
 .pointer {
     cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+    /* OVERRIDE MATERIALIZE */
+    opacity: 1;
+    left: auto;
+    top: auto;
+    transform-origin: initial;
+}
+
+.dropdown-content li > span {
+    color: #333;
+}
+.dropdown-content li.active > span {
+    color: #4285F4;
+}
+.dropdown-content li > span:hover {
+    color: #4285F4;
 }
