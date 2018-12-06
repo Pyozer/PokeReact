@@ -49,23 +49,19 @@ const PokemonInfo = ({ pokemon }) => {
         <Section title="Autres informations">
             <div className="col s12 m6 l5 xl4">
                 <PokemonInfosCard data={{
-                    'Effort value': (data.effortval || "").split(';').join(' / '), 'Expérience value': data.expval,
-                    'Expérience max': data.expmax, 'Capture value': data.captureval,
+                    'Effort': (data.effortval || "").split(';').join(' / '), 'Expérience': data.expval,
+                    'Expérience max': data.expmax, 'Capture ': data.captureval,
                 }} />
-            </div>
-            <div className="col s12 m6 l7 xl8">
-                <PokemonInfosCard data={{
-                    'Capacité spécial 1': data.capspe1, 'Capacité spécial 2': data.capspe2, 'Capacité spécial 3': data.capspe3,
-                    'Oeuf Pas': data.oeufpas, 'Groupe Oeuf 1': data.groupoeuf1, 'Groupe Oeuf 2': data.groupoeuf2,
-                }} />
-            </div>
-            <div className="col s12 m6">
                 <PokemonInfosCard data={{
                     'NDEX': data.ndex, 'NJDEX': data.njdex, 'HDEX': data.hdex, 'FDEX': data.fdex,
                     'ADEX': data.adex, 'ODEX': data.odex, 'OPDEX': data.opdex,
                 }} />
             </div>
-            <div className="col s12 m6">
+            <div className="col s12 m6 l7 xl8">
+                <PokemonInfosCard data={{
+                    'Capacité spéciale 1': data.capspe1, 'Capacité spéciale 2': data.capspe2, 'Capacité spéciale 3': data.capspe3,
+                    'Oeuf Pas': data.oeufpas, 'Groupe Oeuf 1': data.groupoeuf1, 'Groupe Oeuf 2': data.groupoeuf2,
+                }} />
                 <PokemonInfosCard data={{
                     'Pinball RB GIF': data['pinballRB-gif'], 'Pinball RS GIF': data['pinballRS-gif'], 'Pinball RS': data.pinballRS,
                     'PDM': data.pdm, 'Almia': data.almia, 'Diff RS RFVF': data['diff_rs-rfvf'], 'Diff DP PT': data['diff_dp-pt'],
