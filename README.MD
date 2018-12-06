@@ -3,6 +3,8 @@
 PokeReact is a school project to learn NodeJS and React.
 This app is a PokeDex, the website build with React, display pokemons informations, fetched from the API server (NodeJS)
 
+I used create-react-app to build React App and Express to make the node server.
+
 There is two route on the server:
 
 | Method | Route                | Description                                              |
