@@ -17,9 +17,9 @@ If request is a success :
 
 ```json
 {
-    'status': 'success',
-    'code': 200,
-    'data': Object | Array
+    "status": "success",
+    "code": 200,
+    "data": Object | Array
 }
 ```
 
@@ -27,9 +27,9 @@ If request failure :
 
 ```json
 {
-    'status': 'error',
-    'code': 400 | 500,
-    'message': 'An error message'
+    "status": "error",
+    "code": 400 | 500,
+    "message": "An error message"
 }
 ```
 
