@@ -90,8 +90,11 @@ class Home extends Component {
                     {this.renderBody(this.state)}
                 </main>
                 <div className="fixed-bottom-right">
-                    <Link to="/search" className="btn-floating btn-large waves-effect waves-light red flex align-items-center justify-content-center">
-                        <img src={searchIcon} width="30" />
+                    <Link
+                        to="/search"
+                        className="btn-floating btn-large waves-effect waves-light red flex align-items-center justify-content-center"
+                        title="Search pokemon by ID">
+                        <img src={searchIcon} width="30" alt="Search pokemon by ID" />
                     </Link>
                 </div>
             </PageTitle>
