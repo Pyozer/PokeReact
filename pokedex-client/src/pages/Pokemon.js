@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import PokemonInfo from '../components/PokemonInfos'
 import PokemonHeader from '../components/PokemonHeader'
 import BackIcon from '../components/BackIcon'
-import PageTitle from '../Context';
+import { PageTitle } from '../Context';
 import MessageAction from '../components/MessageAction';
 
 class Pokemon extends Component {
@@ -55,7 +55,7 @@ class Pokemon extends Component {
                         <BackIcon href="/" title="Back to home" />
                     </div>
                     <PokemonHeader ndex={pokemonId} nom={pokemonName} className="col s8" />
-                    <div style={{width: 42}}></div> { /* Empty div to correctly center align header (justify-content-between) */}
+                    <div style={{ width: 42 }}></div> { /* Empty div to correctly center align header (justify-content-between) */}
                 </div>
                 {this.renderBody(this.state)}
             </PageTitle>

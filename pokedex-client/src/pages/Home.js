@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom'
 import SearchBar from '../components/SearchBar'
 import PokemonList from '../components/PokemonList';
 import MessageAction from '../components/MessageAction';
-import PageTitle from '../Context';
+import { PageTitle, ThemeContext } from '../Context';
 import logoPokedex from '../assets/Pokedex_logo.png';
 import searchIcon from '../assets/search_icon.svg';
 import sortIcon from '../assets/sort_icon.svg'
+import sortIconWhite from '../assets/sort_icon_white.svg'
 import '../css/Home.css';
 import SortView from '../components/SortView';
 
@@ -98,45 +99,49 @@ class Home extends Component {
         const { sortVisible, sortType } = this.state
 
         return (
-            <PageTitle title="Home">
-                <header className="App-header">
-                    <Link to="/" title="Home">
-                        <img src={logoPokedex} className="App-logo" alt="logo" />
-                    </Link>
-                </header>
-                <main>
-                    <div className="row">
-                        <div className="col s12 m8 l6 offset-m2 offset-l3">
-                            <div className="flex align-items-center">
-                                <div className="flex-grow">
-                                    <SearchBar onSearch={this.onSearch} />
-                                </div>
-                                <div className="dropdown">
-                                    <img src={sortIcon} className="ml-2 pl-1 pr-2 pt-2 pointer scaleEffect" onClick={() => {
-                                        this.setState({ sortVisible: !sortVisible })
-                                    }} alt="Sort pokemons" />
-                                    <SortView
-                                        visible={sortVisible}
-                                        sortList={this.sortTypes}
-                                        selectedSort={sortType}
-                                        onSortChange={sortType => {
-                                            this.setState({ sortType: sortType, sortVisible: !sortVisible })
-                                        }} />
+            <ThemeContext.Consumer>
+                {({ isDark }) => (
+                    <PageTitle title="Home">
+                        <header className="App-header">
+                            <Link to="/" title="Home">
+                                <img src={logoPokedex} className="App-logo" alt="logo" />
+                            </Link>
+                        </header>
+                        <main>
+                            <div className="row">
+                                <div className="col s12 m8 l6 offset-m2 offset-l3">
+                                    <div className="flex align-items-center">
+                                        <div className="flex-grow">
+                                            <SearchBar onSearch={this.onSearch} />
+                                        </div>
+                                        <div className="dropdown">
+                                            <img src={isDark ? sortIconWhite : sortIcon} className="ml-2 pl-1 pr-2 pt-2 pointer scaleEffect" onClick={() => {
+                                                this.setState({ sortVisible: !sortVisible })
+                                            }} alt="Sort pokemons" />
+                                            <SortView
+                                                visible={sortVisible}
+                                                sortList={this.sortTypes}
+                                                selectedSort={sortType}
+                                                onSortChange={sortType => {
+                                                    this.setState({ sortType: sortType, sortVisible: !sortVisible })
+                                                }} />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            {this.renderBody(this.state)}
+                        </main>
+                        <div className="fixed-bottom-right">
+                            <Link
+                                to="/search"
+                                className="btn-floating btn-large waves-effect waves-light red flex align-items-center justify-content-center"
+                                title="Search pokemon by ID">
+                                <img src={searchIcon} width="30" alt="Search pokemon by ID" />
+                            </Link>
                         </div>
-                    </div>
-                    {this.renderBody(this.state)}
-                </main>
-                <div className="fixed-bottom-right">
-                    <Link
-                        to="/search"
-                        className="btn-floating btn-large waves-effect waves-light red flex align-items-center justify-content-center"
-                        title="Search pokemon by ID">
-                        <img src={searchIcon} width="30" alt="Search pokemon by ID" />
-                    </Link>
-                </div>
-            </PageTitle>
+                    </PageTitle>
+                )}
+            </ThemeContext.Consumer>
         )
     }
 }

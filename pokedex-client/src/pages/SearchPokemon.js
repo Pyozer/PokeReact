@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SearchBar from '../components/SearchBar'
 import PokemonList from '../components/PokemonList';
-import PageTitle from '../Context';
+import { PageTitle } from '../Context';
 import '../css/Home.css';
 import MessageAction from '../components/MessageAction';
 import BackIcon from '../components/BackIcon';
@@ -58,14 +58,14 @@ class SearchPokemons extends Component {
                         <BackIcon href="/" title="Back to home" />
                     </div>
                     <h2>Search pokemon by ID</h2>
-                    <div style={{width: 42}}></div> { /* Empty div to correctly center align header (justify-content-between) */}
+                    <div style={{ width: 42 }}></div> { /* Empty div to correctly center align header (justify-content-between) */}
                 </div>
                 <div className="row mt-4">
-                        <div className="col s12 m8 l6 offset-m2 offset-l3">
-                            <SearchBar onSearch={this.onSearch} />
-                        </div>
+                    <div className="col s12 m8 l6 offset-m2 offset-l3">
+                        <SearchBar onSearch={this.onSearch} />
                     </div>
-                    {this.renderBody(this.state)}
+                </div>
+                {this.renderBody(this.state)}
             </PageTitle>
         )
     }

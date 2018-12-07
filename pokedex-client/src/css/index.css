@@ -1,19 +1,24 @@
 @import url('https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800');
 
-html, body {
+html, body, #root {
     margin: 0;
     padding: 0;
     font-family: 'Dosis', sans-serif;
-    color: #222;
-}
-
-html, body, #root {
     height: 100%;
     min-height: 100%;
 }
 
+#root {
+    color: #222;
+    background-color: white;
+}
 #root .is-dark {
     background-color: #222;
+    color: #EAEAEA;
+}
+
+.pokeball-bg {
+    background: url('/background.png') bottom right no-repeat fixed;
 }
 
 strong { font-weight: 600!important; }
@@ -101,12 +106,10 @@ strong { font-weight: 600!important; }
     to   {transform: translateY(-10px);}
 }
 
-.scaleEffect { transition: all 350ms ease; }
+.scaleEffect { transition: transform 350ms ease }
 .scaleEffect:hover { transform: scale(1.05); }
 
-.pointer {
-    cursor: pointer;
-}
+.pointer { cursor: pointer; }
 
 .dropdown {
     position: relative;
@@ -129,12 +132,10 @@ strong { font-weight: 600!important; }
     transform-origin: initial;
 }
 
-.dropdown-content li > span {
-    color: #333;
-}
-.dropdown-content li.active > span {
-    color: #4285F4;
-}
-.dropdown-content li > span:hover {
-    color: #4285F4;
+.dropdown-content li > span { color: #333; }
+.dropdown-content li.active > span { color: #4285F4; }
+.dropdown-content li > span:hover { color: #4285F4; }
+
+.is-dark .input-field input {
+    color: white;
 }

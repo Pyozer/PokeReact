@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import Pokemon from './pages/Pokemon'
 import PageNotFound from './pages/PageNotFound'
 import SearchPokemons from './pages/SearchPokemon';
+import { ThemeContext } from './Context';
 
 /* The regex on route allow only parameter that verify:
 - Is an integer
@@ -16,7 +17,11 @@ import SearchPokemons from './pages/SearchPokemon';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { isDark: false }
+    
+    this.state = {
+      isDark: false,
+      toggleTheme: this.onThemeChange,
+    };
   }
 
   onThemeChange = () => {
@@ -28,28 +33,32 @@ class App extends Component {
   render() {
     const { isDark } = this.state
 
-    return <Router>
-      <div className={"mh100" + (isDark ? ' is-dark' : '')}>
-        <div className="container pt-3 pb-4 mh100">
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route
-              exact
-              path="/:pokemonId(00[1-9]|0[1-9][0-9]|[1-7][0-9][0-9]|80[0-7])"
-              component={Pokemon} />
-            <Route exact path="/search" component={SearchPokemons} />
-            <Route component={PageNotFound} />
-          </Switch>
-          <div className="fixed-top-right">
-            <button
-              className="waves-effect waves-light btn"
-              onClick={this.onThemeChange}>
-              {isDark ? 'Light theme' : 'Dark theme'}
-            </button>
+    return (
+      <Router>
+        <ThemeContext.Provider value={this.state}>
+          <div className={"pokeball-bg mh100" + (isDark ? ' is-dark' : '')}>
+            <div className="container pt-3 pb-4 mh100">
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route
+                  exact
+                  path="/:pokemonId(00[1-9]|0[1-9][0-9]|[1-7][0-9][0-9]|80[0-7])"
+                  component={Pokemon} />
+                <Route exact path="/search" component={SearchPokemons} />
+                <Route component={PageNotFound} />
+              </Switch>
+              <div className="fixed-top-right">
+                <button
+                  className="waves-effect waves-light btn red"
+                  onClick={this.state.toggleTheme}>
+                  {isDark ? 'Light theme' : 'Dark theme'}
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </Router>
+        </ThemeContext.Provider>
+      </Router>
+    )
   }
 }
 

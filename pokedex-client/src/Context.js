@@ -1,8 +1,8 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 const DEFAULT_TITLE = "PokeDex";
 
-export default class PageTitle extends Component {
+export class PageTitle extends Component {
     componentDidUpdate() {
         document.title = (this.props.title ? `${this.props.title}  | ` : '') + DEFAULT_TITLE;
     }
@@ -11,3 +11,10 @@ export default class PageTitle extends Component {
         return this.props.children;
     }
 };
+
+export const ThemeContext = React.createContext({
+    isDark: false,
+    toggleTheme: () => {},
+  });
+
+export default { PageTitle, ThemeContext }
