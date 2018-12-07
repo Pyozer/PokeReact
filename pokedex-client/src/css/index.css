@@ -18,7 +18,11 @@ html, body, #root {
 }
 
 .pokeball-bg {
-    background: url('/background.png') bottom right no-repeat fixed;
+    background: url('https://github.com/Pyozer/PokeReact/blob/master/pokedex-client/public/background.png?raw=true') bottom right no-repeat fixed;
+}
+
+.is-dark .pokeball-bg {
+    background: url('https://github.com/Pyozer/PokeReact/blob/master/pokedex-client/public/background_dark.png?raw=true') bottom right no-repeat fixed;
 }
 
 strong { font-weight: 600!important; }
