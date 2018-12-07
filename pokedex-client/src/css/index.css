@@ -12,6 +12,10 @@ html, body, #root {
     min-height: 100%;
 }
 
+#root .is-dark {
+    background-color: #222;
+}
+
 strong { font-weight: 600!important; }
 
 .flex { display: flex; }
@@ -24,6 +28,11 @@ strong { font-weight: 600!important; }
 .fixed-bottom-right {
     position: fixed;
     bottom: 32px;
+    right: 32px;
+}
+.fixed-top-right {
+    position: fixed;
+    top: 32px;
     right: 32px;
 }
 
@@ -56,6 +65,24 @@ strong { font-weight: 600!important; }
 }
 
 .card { border-radius: 7px; }
+.card .card-content { color: #607d8b; }
+.is-dark .card .card-content { color: white; }
+.is-dark .card { background-color: #444; }
+
+.is-dark h1,
+.is-dark h2,
+.is-dark h3,
+.is-dark h4,
+.is-dark h5,
+.is-dark h6,
+.is-dark td {
+    color: white
+}
+
+.is-dark table.striped>tbody>tr:nth-child(odd) {
+    background-color: rgba(242, 242, 242, 0.158);
+}
+
 .title {
     padding-bottom: 12px;
     border-bottom: 1px solid #EAEAEA;

@@ -9,7 +9,7 @@ const PokemonCard = ({ pokemon }) => (
             <div className="card-image">
                 <PokemonImage ndex={pokemon.ndex} />
             </div>
-            <div className="card-content blue-grey-text">
+            <div className="card-content">
                 <h6 className="truncate">#{pokemon.ndex}</h6>
                 <h5 className="truncate">{pokemon.nom}</h5>
             </div>
